@@ -49,6 +49,17 @@ $(NAME): $(LIB) $(OBJS)
 	$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(LIB)
 	@echo "$(SUCCESS)"
 
+test:
+	@mkdir -p test/classic_directory test/no_perm test/recursive_dir/classic_directory test/recursive_dir/dir_1
+	@touch test/classic_directory/dummy_1 test/classic_directory/dummy_2 test/classic_directory/.secret
+	@touch test/recursive_dir/classic_directory/dummy_1 test/recursive_dir/classic_directory/dummy_2
+	@touch test/recursive_dir/dir_1/dummy_1 test/recursive_dir/dir_1/dummy_2 test/recursive_dir/dir_1/.secret
+	@chmod 000 test/no_perm
+
+clean_test:
+	@chmod 755 test/no_perm
+	@rm -rf test
+
 clean:
 	@echo "$(CLEANING) $(GRAY)$(OBJ_DIR) in $(LIB_DIR) and local dir$(RESET)"
 	@$(MAKE) clean -sC $(LIB_DIR)
@@ -59,7 +70,6 @@ fclean: clean
 	@$(MAKE) fclean -sC $(LIB_DIR)
 	rm -f $(NAME)
 
-
 re: fclean all
 
-.PHONY: all clean fclean re bonus
+.PHONY: all clean fclean re test clean_test
