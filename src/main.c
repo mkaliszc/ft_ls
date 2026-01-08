@@ -1,19 +1,19 @@
 # include "ft_ls.h"
 
-int	main()
+int	main(int argc, char **argv)
 {
-	char	*name = ".";
-	struct dirent *pDirent;
-	DIR *test = opendir(name);
+	// char	*name = ".";
+	// struct dirent *pDirent;
+	// DIR *test = opendir(name);
 
-    if (test == NULL) {
-        printf ("Cannot open directory '%s'\n", name);
-        return 1;
-    }
-    while ((pDirent = readdir(test)) != NULL) {
-		printf ("[%s]\n", pDirent->d_name);
-	}
-	closedir(test);
+    // if (test == NULL) {
+    //     printf ("Cannot open directory '%s'\n", name);
+    //     return 1;
+    // }
+    // while ((pDirent = readdir(test)) != NULL) {
+	// 	printf ("[%s]\n", pDirent->d_name);
+	// }
+	// closedir(test);
 }
 
 
