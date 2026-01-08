@@ -15,16 +15,12 @@
 # include <sys/types.h>
 # include <dirent.h>
 
-typedef enum s_param {
-	ALL,
-	REV,
-	TIME,
-	LONG,
-}	t_param;
-
-typedef struct s_data {
-	bool	R_param;
-	t_param	*flags;
-}	t_data;
+typedef struct s_flags {
+	bool	f_rec;
+	bool	f_all;
+	bool	f_rev;
+	bool	f_time;
+	bool	f_long;
+}	t_flags;
 
 #endif
