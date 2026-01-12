@@ -2,18 +2,27 @@
 
 int	main(int argc, char **argv)
 {
-	// char	*name = ".";
-	// struct dirent *pDirent;
-	// DIR *test = opendir(name);
+	(void)argc, (void)argv;
+	char	*name = ".";
+	struct dirent *pDirent;
+	DIR *test = opendir(name);
 
-    // if (test == NULL) {
-    //     printf ("Cannot open directory '%s'\n", name);
-    //     return 1;
-    // }
-    // while ((pDirent = readdir(test)) != NULL) {
-	// 	printf ("[%s]\n", pDirent->d_name);
-	// }
-	// closedir(test);
+    if (test == NULL) {
+        printf ("Cannot open directory '%s'\n", name);
+        return 1;
+    }
+    while ((pDirent = readdir(test)) != NULL) {
+		printf ("[%s] ", pDirent->d_name);
+		if (pDirent->d_type == DT_REG)
+		{
+			printf("is a file\n");
+		}
+		else
+		{
+			printf("\n");
+		}
+	}
+	closedir(test);
 }
 
 
@@ -22,4 +31,4 @@ int	main(int argc, char **argv)
 // grace a opendir obtenir la liste des fichiers dans un dir stream
 // ? regarder avec stat/lstat si ce sont des sous-dossiers ou pas (-R)
 // ? get owner id etc avec les autres fonctions autorisees -l 
-// * -a jsute regarder les fichier avec un .
+// * -a juste regarder les fichier avec un .

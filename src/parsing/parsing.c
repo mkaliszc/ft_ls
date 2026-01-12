@@ -1,6 +1,6 @@
 # include "ft_ls.h"
 
-void	parsing_flags(char *name, t_flags *flags)
+void	checker_flags(char *name, t_flags *flags)
 {
 	int	i = 1;
 
