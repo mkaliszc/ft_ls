@@ -29,6 +29,4 @@ int	main(int argc, char **argv)
 // TODO :
 // opendir ouvre le stream readir permet d'acceder et traverser la struct
 // grace a opendir obtenir la liste des fichiers dans un dir stream
-// ? regarder avec stat/lstat si ce sont des sous-dossiers ou pas (-R)
 // ? get owner id etc avec les autres fonctions autorisees -l 
-// * -a juste regarder les fichier avec un .

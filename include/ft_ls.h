@@ -15,14 +15,16 @@
 # include <sys/stat.h>
 # include <sys/types.h>
 # include <dirent.h>
+# include <string.h>
+# include <errno.h>
 
 /* This struct will contain the content of each dir*/
 
 typedef struct s_dir_content
 {
-	char			*name;
+	char					*name;
 	struct t_dir_content	*next;
-	struct stat		file_info;
+	struct stat				file_info;
 }	t_dir_content;
 
 /* this struct contain every flag checked after the parsing to be faster */
@@ -50,5 +52,8 @@ void			alpha_sort(t_dir_content **dir);
 void			time_sort(t_dir_content **dir);
 void			rev_sort(t_dir_content **dir);
 
+void			exec(char *name, t_flags *flags);
+void			print_perm(struct stat file_info);
+void			print_time_info(struct stat file_info);
 
 #endif
