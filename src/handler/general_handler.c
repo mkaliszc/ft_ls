@@ -2,10 +2,10 @@
 
 void	handler_long(t_dir_content **dir_c)
 {
-	// TODO : check for perm on each file, the size, owner/creator, date and hard links
 	t_dir_content	*cur;
 
 	cur = *dir_c;
+	ft_printf("total %l\n", get_total_size(dir_c));
 	while (cur)
 	{
 		// perm
@@ -17,9 +17,9 @@ void	handler_long(t_dir_content **dir_c)
 		// size
 		ft_printf("%l ", cur->file_info.st_size);
 		// last modification hour and date
-		print_time_info(cur->file_info); // to implement
+		print_time_info(cur->file_info);
 		// file name
-		ft_printf("%s\n", cur->name);
+		ft_printf(" %s\n", cur->name);
 		cur = cur->next;
 	}
 }
@@ -67,6 +67,5 @@ void	general_handler(t_dir_content **dir_c, t_flags *flags)
 	else {
 		classic_way(dir_c);
 	}
-
 	lst_free(dir_c);
 }
