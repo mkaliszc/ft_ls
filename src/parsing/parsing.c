@@ -1,24 +1,24 @@
 # include "ft_ls.h"
 
-void	checker_flags(char *name, t_flags *flags)
+void	checker_flags(char *str, t_flags *flags)
 {
 	int	i = 1;
 
-	while (name[i])
+	while (str[i])
 	{
-		if (name[i] == 'R') {
+		if (str[i] == 'R') {
 			flags->f_rec = true;
 		}
-		else if (name[i] == 'a') {
+		else if (str[i] == 'a') {
 			flags->f_all = true;
 		}
-		else if (name[i] == 'a') {
+		else if (str[i] == 'r') {
 			flags->f_rev = true;
 		}
-		else if (name[i] == 'a') {
+		else if (str[i] == 't') {
 			flags->f_time = true;
 		}
-		else if (name[i] == 'a') {
+		else if (str[i] == 'l') {
 			flags->f_long = true;
 		}
 		else {

@@ -1,38 +1,37 @@
 # include "ft_ls.h"
 
-int	main()
+int	main(int argc, char **argv)
 {
-	struct stat	test;
+	t_flags	*flags = init_struct();
 
-	stat("./../carte_mentale/conditional_instructions_mindmap.html", &test);
-
-	printf("%ld && %s\n", test.st_mtime, ctime(&test.st_mtime));
+	if (argc == 1) {
+		exec(argc, ".", flags);
+	}
+	else if (argc == 2) {
+		for (int i = 1; i < argc; i++) {	
+			if (argv[i][0] == '-') {
+				checker_flags(argv[1], flags);
+				exec(argc, ".", flags);
+			}
+			else {
+				exec(argc, argv[i], flags);
+			}
+		}
+	}
+	else {
+		for (int i = 1; i < argc; i++) {
+			if (argv[i][0] == '-')
+				checker_flags(argv[i], flags);
+		}
+		for (int i = 1; i < argc; i++) {
+			if (argv[i][0] == '-')
+				continue;
+			else
+				ft_printf("%s:\n", argv[i]);
+			exec(argc, argv[i], flags);
+			write(1, "\n", 1);
+		}
+	}
+	free(flags);
 	return(0);
-	//argc, (void)argv;
-	// char	*name = ".";
-	// struct dirent *pDirent;
-	// DIR *test = opendir(name);
-
-    // if (test == NULL) {
-    //     printf ("Cannot open directory '%s'\n", name);
-    //     return 1;
-    // }
-    // while ((pDirent = readdir(test)) != NULL) {
-	// 	printf ("[%s] ", pDirent->d_name);
-	// 	if (pDirent->d_type == DT_REG)
-	// 	{
-	// 		printf("is a file\n");
-	// 	}
-	// 	else
-	// 	{
-	// 		printf("\n");
-	// 	}
-	// }
-	// closedir(test);
 }
-
-
-// TODO :
-// opendir ouvre le stream readir permet d'acceder et traverser la struct
-// grace a opendir obtenir la liste des fichiers dans un dir stream
-// ? get owner id etc avec les autres fonctions autorisees -l 

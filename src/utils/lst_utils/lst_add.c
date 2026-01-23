@@ -10,6 +10,7 @@ void	lst_add_back(t_dir_content **lst, t_dir_content *node)
 {
 	t_dir_content	*pos;
 
+	
 	if (node == NULL)
 		return ;
 	if (*lst == NULL)

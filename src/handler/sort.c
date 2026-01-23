@@ -2,81 +2,78 @@
 
 void	alpha_sort(t_dir_content **dir)
 {
-	t_dir_content	*sorted = NULL;
-	t_dir_content	*cur;
-	t_dir_content	*prev;
-	t_dir_content	*lowest;
-	t_dir_content	*tmp;
-
-	while (*dir)
-	{
+    t_dir_content   *sorted = NULL;
+    t_dir_content   *cur;
+    t_dir_content   *prev;
+    t_dir_content   *lowest;
+    
+    while (*dir)
+    {
         cur = *dir;
         lowest = cur;
         prev = NULL;
-        tmp = NULL;
         
-        while (cur)
+        while (cur->next)
         {
-            if (ft_strcmp(cur->name, lowest->name) < 0)
+            if (ft_strcmp(cur->next->name, lowest->name) < 0)
             {
-                lowest = cur;
-                prev = tmp;
+                lowest = cur->next;
+                prev = cur;
             }
-            tmp = cur;
             cur = cur->next;
         }
+        
         if (prev)
             prev->next = lowest->next;
         else
             *dir = lowest->next;
-
-		lowest->next = NULL;
-		ft_lstadd_back(&sorted, lowest);
-	}
-	*dir = sorted;
+        
+        lowest->next = NULL;
+        lst_add_back(&sorted, lowest);
+    }
+    
+    *dir = sorted;
 }
 
 void	time_sort(t_dir_content **dir)
 {
-	t_dir_content	*sorted = NULL;
-	t_dir_content	*cur;
-	t_dir_content	*prev;
-	t_dir_content	*lowest;
-	t_dir_content	*tmp;
-
-	while (*dir)
-	{
+    t_dir_content   *sorted = NULL;
+    t_dir_content   *cur;
+    t_dir_content   *prev;
+    t_dir_content   *lowest;
+    
+    while (*dir)
+    {
         cur = *dir;
         lowest = cur;
         prev = NULL;
-        tmp = NULL;
         
-        while (cur)
+        while (cur->next)
         {
-            if (cur->file_info.st_mtime < lowest->file_info.st_mtime)
+            if (ft_strcmp(cur->next->name, lowest->name) < 0)
             {
-                lowest = cur;
-                prev = tmp;
+                lowest = cur->next;
+                prev = cur;
             }
-            tmp = cur;
             cur = cur->next;
         }
+        
         if (prev)
             prev->next = lowest->next;
         else
             *dir = lowest->next;
-
-		lowest->next = NULL;
-		ft_lstadd_back(&sorted, lowest);
-	}
-	*dir = sorted;
+        
+        lowest->next = NULL;
+        lst_add_back(&sorted, lowest);
+    }
+    
+    *dir = sorted;
 }
 
 void	rev_sort(t_dir_content **dir)
 {
     t_dir_content   *sorted = NULL;
     t_dir_content   *cur;
-    t_dir_content   *tmp;
 
     while (*dir)
     {

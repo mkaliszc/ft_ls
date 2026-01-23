@@ -14,7 +14,5 @@ void	print_time_info(struct stat file_info)
         write(1, " ", 1);
         write(1, str + 20, 4);
     }
+    write(1, "\t", 1);
 }
-
-// Mon Aug  4 19:27:02 2025
-// 0123

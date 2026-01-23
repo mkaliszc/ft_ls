@@ -6,10 +6,11 @@ void	lst_free(t_dir_content **content)
 
 	while (*content)
 	{
-		tmp = content;
+		tmp = *content;
 		*content = tmp->next;
-
 		free(tmp->name);
+		free(tmp->path);
 		free(tmp);
 	}
+	free(content);
 }
