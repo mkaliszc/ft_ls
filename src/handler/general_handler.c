@@ -54,7 +54,7 @@ void	classic_way(t_dir_content **dir_c)
 	ft_printf("\n");
 }
 
-void	general_handler(int argc, t_dir_content **dir_c, t_flags *flags)
+void	general_handler(t_dir_content **dir_c, t_flags *flags)
 {
 	t_dir_content	*tmp;
 
@@ -64,18 +64,17 @@ void	general_handler(int argc, t_dir_content **dir_c, t_flags *flags)
 	{
 		if (flags->f_long) {
 			handler_long(dir_c);
-			ft_printf("\n");
 		}
 		else {
 			classic_way(dir_c);
-			ft_printf("\n");
 		}
 
 		tmp = *dir_c;
 		while (tmp)
 		{
 			if (S_ISDIR(tmp->file_info.st_mode) && ft_strcmp(tmp->name, ".") && ft_strcmp(tmp->name, "..")) {
-				exec(argc, tmp->path, flags); // need to pass the path not only the name of file
+				ft_printf("\n");
+				exec(tmp->path, flags);
 			}
 			tmp = tmp->next;
 		}

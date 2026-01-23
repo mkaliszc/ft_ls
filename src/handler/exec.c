@@ -2,9 +2,8 @@
 
 // here we want to cycle and handle the -R + -l options
 
-void	exec(int argc, char *name, t_flags *flags)
+void	exec(char *name, t_flags *flags)
 {
-	(void)argc; // temp
 	t_dir_content	**dir_c;
 	DIR				*dir = opendir(name);
 
@@ -18,5 +17,5 @@ void	exec(int argc, char *name, t_flags *flags)
 	}
 	dir_c = read_dir_content(name, flags);
 	closedir(dir);
-	general_handler(argc, dir_c, flags);
+	general_handler(dir_c, flags);
 }
