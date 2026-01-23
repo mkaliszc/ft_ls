@@ -13,8 +13,10 @@
 // # include <stdbool.h>
 
 # include <sys/stat.h>
-# include <time.h>
 # include <sys/types.h>
+# include <pwd.h>
+# include <grp.h>
+# include <time.h>
 # include <dirent.h>
 # include <string.h>
 # include <errno.h>
@@ -23,8 +25,9 @@
 
 typedef struct s_dir_content
 {
+	char					*path;
 	char					*name;
-	struct t_dir_content	*next;
+	struct s_dir_content	*next;
 	struct stat				file_info;
 }	t_dir_content;
 
@@ -40,16 +43,16 @@ typedef struct s_flags {
 
 /* Parsing */
 t_flags			*init_struct(void);
-void			checker_flags(char *name, t_flags *flags);
+void			checker_flags(char *str, t_flags *flags);
 
 /* handler */
 t_dir_content	**read_dir_content(char *dir, t_flags *flags);
-void			general_handler(t_dir_content **dir_c, t_flags *flags);
+void			general_handler(int argc, t_dir_content **dir_c, t_flags *flags);
 void			sort_content(t_dir_content **dir_c, t_flags *flags);
 void			alpha_sort(t_dir_content **dir);
 void			time_sort(t_dir_content **dir);
 void			rev_sort(t_dir_content **dir);
-void			exec(char *name, t_flags *flags);
+void			exec(int argc, char *name, t_flags *flags);
 
 /* utils */
 t_dir_content	*lst_new_node(char *dir, char *name);
