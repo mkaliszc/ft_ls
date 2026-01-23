@@ -19,7 +19,12 @@ SRC_DIR = src
 OBJ_DIR = obj
 LIB_DIR = OctoLIB/
 
-FT = main
+FT = main \
+	handler/exec handler/extract_content handler/general_handler handler/sort \
+	parsing/init_struct parsing/parsing \
+	utils/clean/lst_free \
+	utils/long_format_utils/get_total_size utils/long_format_utils/print_perm utils/long_format_utils/print_time \
+	utils/lst_utils/lst_add utils/lst_utils/lst_new_node
 
 SOURCES = $(addprefix $(SRC_DIR)/, $(addsuffix .c, $(FT)))
 OBJS = $(addprefix $(OBJ_DIR)/, $(addsuffix .o, $(FT)))
