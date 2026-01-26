@@ -22,7 +22,7 @@ void	checker_flags(char *str, t_flags *flags)
 			flags->f_long = true;
 		}
 		else {
-			perror("invalid flag.\n");
+			ft_printf("ft_ls: invalid option -- %c.\n", str[i]); // replace perror by ft_printf
 			free(flags);
 			exit(1);
 		}

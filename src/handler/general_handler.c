@@ -14,7 +14,7 @@ void	handler_long(t_dir_content **dir_c)
 		// perm
 		print_perm(cur->file_info);
 		// Nombre de liens
-        ft_printf("%d ", cur->file_info.st_nlink);
+		ft_printf("%d ", cur->file_info.st_nlink);
 		// owner
 		user = getpwuid(cur->file_info.st_uid);
 		if (user) {
