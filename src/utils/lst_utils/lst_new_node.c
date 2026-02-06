@@ -22,7 +22,8 @@ t_dir_content	*lst_new_node(char *dir, char *name)
 	node->name = ft_strdup(name);
 	node->path = path;
 
-	if (stat(path, &(node->file_info)) == -1){
+	if (lstat(path, &(node->file_info)) == -1) {
+		free(name);
 		free(path);
 		free(node);
 		perror("Stat failed.");

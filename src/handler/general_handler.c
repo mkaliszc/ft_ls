@@ -24,7 +24,7 @@ void	handler_long(t_dir_content **dir_c)
 			ft_printf("%d\t", cur->file_info.st_uid);
 		}
 		// group
-		group = getgrgid(cur->file_info.st_uid);
+		group = getgrgid(cur->file_info.st_gid);
 		if (group) {
 			ft_printf("%s\t", group->gr_name);
 		}
@@ -36,7 +36,11 @@ void	handler_long(t_dir_content **dir_c)
 		// last modification hour and date
 		print_time_info(cur->file_info);
 		// file name
-		ft_printf("%s\n", cur->name);
+		ft_printf("%s", cur->name);
+		if (S_ISLNK(cur->file_info.st_mode)) {
+			print_link(cur);
+		}
+		write(1, "\n", 1);
 		cur = cur->next;
 	}
 }
@@ -72,7 +76,11 @@ void	general_handler(t_dir_content **dir_c, t_flags *flags)
 		tmp = *dir_c;
 		while (tmp)
 		{
-			if (S_ISDIR(tmp->file_info.st_mode) && ft_strcmp(tmp->name, ".") && ft_strcmp(tmp->name, "..")) {
+			if (S_ISDIR(tmp->file_info.st_mode)
+				&& !S_ISLNK(tmp->file_info.st_mode)
+				&& ft_strcmp(tmp->name, ".") 
+				&& ft_strcmp(tmp->name, "..")) 
+			{
 				ft_printf("\n");
 				exec(tmp->path, flags);
 			}

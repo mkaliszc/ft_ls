@@ -50,7 +50,7 @@ void	time_sort(t_dir_content **dir)
         
         while (cur->next)
         {
-            if (ft_strcmp(cur->next->name, lowest->name) < 0)
+            if (cur->next->file_info.st_mtime > lowest->file_info.st_mtime)
             {
                 lowest = cur->next;
                 prev = cur;

@@ -30,7 +30,6 @@ int	main(int argc, char **argv)
 				ft_printf("%s:\n", argv[i]);
 
 			exec(argv[i], flags);
-			write(1, "\n", 1);
 		}
 	}
 	free(flags);

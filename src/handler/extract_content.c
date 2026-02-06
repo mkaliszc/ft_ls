@@ -4,13 +4,13 @@
 
 t_dir_content	**read_dir_content(char *dir, t_flags *flags)
 {
-    t_dir_content   **file_list;
-    t_dir_content   *cur;
-    struct dirent   *tmp;
-    DIR             *dir_stream = opendir(dir);
+    t_dir_content	**file_list;
+    t_dir_content	*cur;
+    struct dirent	*tmp;
+    DIR				*dir_stream = opendir(dir);
     
     if (dir_stream == NULL) {
-        printf("Cannot open directory '%s'\n", dir);
+        printf_fd(2, "ft_ls: cannot open directory '%s': %s\n", dir, strerror(errno));
         return (NULL);
     }
 

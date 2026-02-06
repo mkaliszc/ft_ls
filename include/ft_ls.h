@@ -59,6 +59,7 @@ t_dir_content	*lst_new_node(char *dir, char *name);
 void			lst_add_back(t_dir_content **lst, t_dir_content *node);
 void			lst_add_front(t_dir_content **lst, t_dir_content *new);
 void			lst_free(t_dir_content **content);
+void			print_link(t_dir_content *cur);
 void			print_perm(struct stat file_info);
 void			print_time_info(struct stat file_info);
 long			get_total_size(t_dir_content **dir_c);
