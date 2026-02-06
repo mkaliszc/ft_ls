@@ -59,6 +59,7 @@ test:
 	@touch test/classic_directory/dummy_1 test/classic_directory/dummy_2 test/classic_directory/.secret
 	@touch test/recursive_dir/classic_directory/dummy_1 test/recursive_dir/classic_directory/dummy_2
 	@touch test/recursive_dir/dir_1/dummy_1 test/recursive_dir/dir_1/dummy_2 test/recursive_dir/dir_1/.secret
+	@ln -sf ../../classic_directory/dummy_2 test/recursive_dir/dir_1/dummy_3
 	@chmod 000 test/no_perm
 
 clean_test:
